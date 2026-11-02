@@ -1,0 +1,5 @@
+# Tạo namespace riêng cho bài lab
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ping-lab

@@ -1,0 +1,26 @@
+# Hai Service "headless" (clusterIP: None) chỉ để có TÊN DNS cho 2 Pod.
+# Nhờ đó ta có thể "ping pod-b" bằng tên thay vì gõ IP.
+# Headless không có IP ảo: hỏi DNS tên "pod-b" sẽ nhận thẳng IP của Pod B.
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-a
+  namespace: ping-lab
+spec:
+  clusterIP: None
+  selector:
+    app: pod-a
+  ports:
+  - port: 80                # bắt buộc khai báo, không ảnh hưởng tới ping
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-b
+  namespace: ping-lab
+spec:
+  clusterIP: None
+  selector:
+    app: pod-b
+  ports:
+  - port: 80

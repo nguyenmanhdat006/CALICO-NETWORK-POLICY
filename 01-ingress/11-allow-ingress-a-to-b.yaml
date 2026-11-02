@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-a-to-b
+  namespace: ping-lab
+spec:
+  podSelector:
+    matchLabels:
+      app: pod-b
+  policyTypes: [Ingress]
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: pod-a

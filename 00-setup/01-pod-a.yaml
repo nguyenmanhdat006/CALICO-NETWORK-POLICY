@@ -1,0 +1,13 @@
+# Pod A: một container busybox, chỉ "ngủ" để ta vào gõ lệnh ping
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-a
+  namespace: ping-lab
+  labels:
+    app: pod-a              # NHÃN: NetworkPolicy dựa vào đây để nhận ra Pod A
+spec:
+  containers:
+  - name: shell             # tên container bên trong Pod
+    image: busybox:1.36
+    command: ["sleep", "infinity"]
